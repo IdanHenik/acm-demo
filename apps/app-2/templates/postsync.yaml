@@ -4,6 +4,7 @@ metadata:
   generateName: app-reload-config
   annotations:
     argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
@@ -18,4 +19,4 @@ spec:
             oc login --token=sha256~dwyVJvkBq_e5Hhxpq-3QqNGO_NNPjFFPr_r7kfmIUgU --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443 --insecure-skip-tls-verify
             oc delete pod --all
        restartPolicy: Never
-    backoffLimit: 2
+    backoffLimit: 1
