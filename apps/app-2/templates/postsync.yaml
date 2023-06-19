@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: app-reload-config
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+       containers:
+      - name: pod-deletion-container
+        image: openshift/origin-cli:latest
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          oc login --token=sha256~dwyVJvkBq_e5Hhxpq-3QqNGO_NNPjFFPr_r7kfmIUgU --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443
+          oc project webserver-app-2
+          oc delete pod --all
+      restartPolicy: Never
+  backoffLimit: 2
