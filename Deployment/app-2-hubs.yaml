@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/IdanHenik/argocd-dr.git
+        repoURL: https://github.com/IdanHenik/acm-demo.git
         targetRevision: HEAD
         path: apps/app-2
       destination:
