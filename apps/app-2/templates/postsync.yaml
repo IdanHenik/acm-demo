@@ -16,7 +16,11 @@ spec:
          command: ["/bin/bash", "-c"]
          args:
          - |
-            oc login -u admin -p xT91nh2fVgwMT8kA --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443 --insecure-skip-tls-verifyp-tls-verify
+            oc login -u admin -p xT91nh2fVgwMT8kA --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443 --insecure-skip-tls-verify
+            oc scale replicaset --all --replicas=0
+            sleep 3
+            oc scale replicaset --all --replicas=1
+            oc login -u admin -p DRFVabLmdrQK4uQ4 --server=https://api.cluster-dwdxz.dwdxz.sandbox2869.opentlc.com:6443 --insecure-skip-tls-verify
             oc scale replicaset --all --replicas=0
             sleep 3
             oc scale replicaset --all --replicas=1
