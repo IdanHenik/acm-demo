@@ -1,0 +1,45 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: app-1-demo
+  namespace: application-1
+  annotations:
+    apps.open-cluster-management.io/deployables: ''
+    apps.open-cluster-management.io/subscriptions: application-1/app-1-demo-subscription-1,application-1/app-1-demo-subscription-1-local
+    open-cluster-management.io/user-group: c3lzdGVtOnNlcnZpY2VhY2NvdW50cyxzeXN0ZW06c2VydmljZWFjY291bnRzOm9wZW4tY2x1c3Rlci1tYW5hZ2VtZW50LHN5c3RlbTphdXRoZW50aWNhdGVk
+    open-cluster-management.io/user-identity: c3lzdGVtOnNlcnZpY2VhY2NvdW50Om9wZW4tY2x1c3Rlci1tYW5hZ2VtZW50Om11bHRpY2x1c3Rlci1hcHBsaWNhdGlvbnM=
+spec:
+  componentKinds:
+    - group: apps.open-cluster-management.io
+      kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - app-1-demo
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  name: app-1-demo-subscription-1
+  namespace: application-1
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-current-commit: b98f5804998e1151d7ea01adfdf042ba6960ec40
+    apps.open-cluster-management.io/git-path: apps/app-1
+    apps.open-cluster-management.io/manual-refresh-time: '2023-06-19T09:50:16.200Z'
+    apps.open-cluster-management.io/reconcile-option: merge
+    open-cluster-management.io/user-group: c3lzdGVtOmF1dGhlbnRpY2F0ZWQ6b2F1dGgsc3lzdGVtOmF1dGhlbnRpY2F0ZWQ=
+    open-cluster-management.io/user-identity: YWRtaW4=
+  labels:
+    app: app-1-demo
+    app.kubernetes.io/part-of: app-1-demo
+    apps.open-cluster-management.io/reconcile-rate: medium
+spec:
+  channel: ggithubcom-idanhenik-argocd-dr-ns/ggithubcom-idanhenik-argocd-dr
+  placement:
+    placementRef:
+      name: app-1-demo-placement-1
+      kind: Placement
