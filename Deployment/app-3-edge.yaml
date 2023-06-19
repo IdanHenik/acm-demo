@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-3-edge
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: edge-cluster-sno-1
+        url: https://api.cluster-58p5t.58p5t.sandbox338.opentlc.com:6443
+      - cluster: edge-cluster-sno-2
+        url: https://api.cluster-4669z.4669z.sandbox3113.opentlc.com:6443
+  template:
+    metadata:
+      name: '{{cluster}}-app-3'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/IdanHenik/argocd-dr.git
+        targetRevision: HEAD
+        path: apps/app-3
+      destination:
+        server: '{{url}}'
+        namespace: default

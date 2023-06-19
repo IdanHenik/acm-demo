@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-2-hubs
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: hub-cluster-site-b
+        url: https://api.cluster-dwdxz.dwdxz.sandbox2869.opentlc.com:6443
+      - cluster: local-cluster
+        url: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: '{{cluster}}-app-2'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/IdanHenik/argocd-dr.git
+        targetRevision: HEAD
+        path: apps/app-2
+      destination:
+        server: '{{url}}'
+        namespace: default
