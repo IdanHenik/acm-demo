@@ -8,7 +8,7 @@ metadata:
 spec:
   template:
     spec:
-       serviceAccountName: argo-hooker
+       #serviceAccountName: argo-hooker
        containers:
        - name: pod-deletion-container
          image: openshift/origin-cli:latest
