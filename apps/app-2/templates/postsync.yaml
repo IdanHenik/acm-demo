@@ -14,7 +14,7 @@ spec:
          command: ["/bin/bash", "-c"]
          args:
          - |
-            oc login --token=sha256~dwyVJvkBq_e5Hhxpq-3QqNGO_NNPjFFPr_r7kfmIUgU --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443
+            oc login --token=sha256~dwyVJvkBq_e5Hhxpq-3QqNGO_NNPjFFPr_r7kfmIUgU --server=https://api.cluster-x7psm.x7psm.sandbox2348.opentlc.com:6443 --insecure-skip-tls-verify
             oc project webserver-app-2
             oc delete pod --all
        restartPolicy: Never
