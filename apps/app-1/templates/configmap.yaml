@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
   application.html: |
-    {{ .Values.application.content }}
+    "<h1>Welcome to the demo I'm App-1 v1.0</h1>"
 kind: ConfigMap
 metadata:
   name: application-prod
-  namespace: {{ .Values.namespace }}
+  namespace: application-1
