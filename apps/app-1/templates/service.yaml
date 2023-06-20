@@ -4,7 +4,7 @@ metadata:
   labels:
     app: webserver
   name: webserver
-  namespace: {{ .Values.namespace }}
+  namespace: application-1
 spec:
   ports:
   - name: 8080-tcp
